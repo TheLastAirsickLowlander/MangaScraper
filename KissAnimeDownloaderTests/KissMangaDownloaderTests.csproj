@@ -55,9 +55,9 @@
     <Compile Include="Utilties\HtmlParseingTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\KissAnimeDownloader\KissAnimeDownloader.csproj">
+    <ProjectReference Include="..\KissAnimeDownloader\KissMangaDownloader.csproj">
       <Project>{B5375EFB-9CAC-4EC7-9432-D76DB0BE1CF9}</Project>
-      <Name>KissAnimeDownloader</Name>
+      <Name>KissMangaDownloader</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>
