@@ -30,9 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.Exchange.WebServices">
-      <HintPath>..\..\..\Program Files\Microsoft\Exchange\Web Services\2.0\Microsoft.Exchange.WebServices.dll</HintPath>
-    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
@@ -76,7 +73,6 @@
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Images\BitmapConversions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WebUtility\ExchangeManager.cs" />
     <Compile Include="WebUtility\WebImporting.cs" />
   </ItemGroup>
   <ItemGroup />
