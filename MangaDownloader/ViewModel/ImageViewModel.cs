@@ -41,7 +41,7 @@ namespace KissAnimeDownloader.ViewModel
             {
                 if (value != _Link)
                 {
-                    FileName = value.Substring(value.IndexOf("?") - 7, 7);
+                    FileName = value.Substring(value.LastIndexOf("/")+1, 7);
                     _Link = value;
                     OnPropertyChanged("Link");
                 }

@@ -252,11 +252,19 @@ namespace KissAnimeDownloader.ViewModel
 
             var loopResult = Parallel.ForEach(imageLinks, img =>
             {
-                FileInfo fi = new FileInfo(di.ToString() + "\\" + img.FileName);
-                if (!fi.Exists)
-                    WebManager.DownloadImage(img.Link, di.ToString() + "\\" + img.FileName);
-                else
-                    Debug.WriteLine(fi.Name + " already exists");
+                try
+                {
+                    FileInfo fi = new FileInfo(di.ToString() + "\\" + img.FileName);
+                    if (!fi.Exists)
+                        WebManager.DownloadImage(img.Link, di.ToString() + "\\" + img.FileName);
+                    //else
+                        //Debug.WriteLine(fi.Name + " already exists");
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine("File Name through an excetion while processing");
+                    Debug.WriteLine(ex.Message);
+                }
             });
         }
 
