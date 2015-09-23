@@ -1,4 +1,4 @@
-﻿using KissAnimeDownloader.Utilties;
+﻿using MangaScraper.Utilties;
 using ScFix.Utility.Classes;
 using ScFix.Utility.ViewModels;
 using ScFix.Utility.WebUtility;
@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
-namespace KissAnimeDownloader.ViewModel
+namespace MangaScraper.ViewModel
 {
 
     public enum ChapterProcessingStatus

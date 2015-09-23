@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KissAnimeDownloader.Utilties
+namespace MangaScraper.Utilties
 {
     public class HtmlParseing
     {

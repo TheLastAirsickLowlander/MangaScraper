@@ -1,4 +1,4 @@
-﻿using KissAnimeDownloader.Utilties;
+﻿using MangaScraper.Utilties;
 using ScFix.Utility.Classes;
 using ScFix.Utility.ViewModels;
 using ScFix.Utility.WebUtility;
@@ -12,7 +12,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace KissAnimeDownloader.ViewModel
+namespace MangaScraper.ViewModel
 {
     public class MainViewModel : ViewModelBase
     {
@@ -257,21 +257,8 @@ namespace KissAnimeDownloader.ViewModel
         #region Methods
         private void renderedHtmlCallback(String body)
         {
-            //foreach (var img in wb.Document.Images)
-            //{
-
             Debug.WriteLine("img");
             ChapterLinks = getChapterLinks(body);
-
-
-            //IList<string> urls = getimageURLS(body);
-
-
-            //}
-            //wb.Dispose();
-
-
-
         }
 
         private IList<ChapterViewModel> getChapterLinks(string body)

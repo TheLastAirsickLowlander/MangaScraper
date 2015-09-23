@@ -59,10 +59,12 @@
     </ApplicationDefinition>
     <Compile Include="Converter\ObjectToVisibility.cs" />
     <Compile Include="Converter\EnumConverter.cs" />
+    <Compile Include="Models\SeriesModel.cs" />
     <Compile Include="Utilties\HtmlParseing.cs" />
     <Compile Include="ViewModel\ChapterViewModel.cs" />
     <Compile Include="ViewModel\ImageViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\SeriesManagerViewModel.cs" />
     <Compile Include="Views\ChapterLink.xaml.cs">
       <DependentUpon>ChapterLink.xaml</DependentUpon>
     </Compile>

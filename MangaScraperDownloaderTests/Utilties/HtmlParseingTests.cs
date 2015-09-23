@@ -1,12 +1,12 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using KissAnimeDownloader.Utilties;
+using MangaScraper.Utilties;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KissAnimeDownloader.Utilties.Tests
+namespace MangaScraper.Utilties.Tests
 {
     [TestClass()]
     public class HtmlParseingTests

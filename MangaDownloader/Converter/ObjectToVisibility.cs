@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
 
-namespace KissAnimeDownloader.Converter
+namespace MangaScraper.Converter
 {
     public class ObjectToVisibility : IValueConverter
     {

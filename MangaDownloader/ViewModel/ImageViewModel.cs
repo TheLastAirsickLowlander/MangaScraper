@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KissAnimeDownloader.ViewModel
+namespace MangaScraper.ViewModel
 {
     public class ImageViewModel : ViewModelBase
     {
@@ -41,7 +41,9 @@ namespace KissAnimeDownloader.ViewModel
             {
                 if (value != _Link)
                 {
-                    FileName = value.Substring(value.LastIndexOf("/")+1, 7);
+                    int s = value.LastIndexOf("/") + 1;
+                    int l = value.Length - s;
+                    FileName = value.Substring(s, l);
                     _Link = value;
                     OnPropertyChanged("Link");
                 }

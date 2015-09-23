@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace KissAnimeDownloader.Properties {
+namespace MangaScraper.Properties {
     using System;
     
     

@@ -46,12 +46,12 @@ namespace ScFix.Utility.Behaviors
 
         private void AssociatedObject_MouseMove(object sender, MouseEventArgs e)
         {
-            throw new NotImplementedException();
+
         }
 
         private void AssociatedObject_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            throw new NotImplementedException();
+
         }
     }
 }

@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace KissAnimeDownloader
+namespace MangaScraper
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
