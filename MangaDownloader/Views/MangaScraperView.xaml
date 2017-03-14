@@ -1,23 +1,20 @@
-﻿<Window x:Class="MangaScraper.MainWindow"
+﻿<UserControl x:Class="WebScraper.Views.MangaScraperView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:MangaScraper"
-        xmlns:v="clr-namespace:MangaScraper.Views"
+        xmlns:local="clr-namespace:WebScraper"
+        xmlns:v="clr-namespace:WebScraper.Views"
         mc:Ignorable="d"
-        xmlns:vm="clr-namespace:MangaScraper.ViewModel"
-        xmlns:conv="clr-namespace:MangaScraper.Converter"
-        Title="MainWindow"
-        Height="350"
-        Width="525">
+        xmlns:vm="clr-namespace:WebScraper.ViewModel"
+        xmlns:conv="clr-namespace:WebScraper.Converter">
     <d:DesignProperties.DataContext>
-        <vm:MainViewModel />
+        <vm:MangaScraperViewModel />
     </d:DesignProperties.DataContext>
-    <Window.DataContext>
-        <vm:MainViewModel />
-    </Window.DataContext>
-    <Window.Resources>
+    <UserControl.DataContext>
+        <vm:MangaScraperViewModel />
+    </UserControl.DataContext>
+    <UserControl.Resources>
         <Style TargetType="TextBox">
             <Setter Property="Margin"
                     Value="5,5,5,0" />
@@ -35,7 +32,7 @@
             <Setter Property="HorizontalContentAlignment"
                     Value="Stretch" />
         </Style>
-    </Window.Resources>
+    </UserControl.Resources>
     <DockPanel>
         <Grid DockPanel.Dock="Top">
             <Grid.RowDefinitions>
@@ -82,4 +79,4 @@
         <ListBox DockPanel.Dock="Left"></ListBox>
         
     </DockPanel>
-</Window>
+</UserControl>

@@ -1,12 +1,12 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MangaScraper.Utilties;
+using WebScraper.Utilties;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MangaScraper.Utilties.Tests
+namespace WebScraper.Utilties.Tests
 {
     [TestClass()]
     public class HtmlParseingTests

@@ -111,11 +111,16 @@ namespace ScFix.Utility.WebUtility
 			//wb.FileDownload += Wb_FileDownload;
 			while (!na.isLoaded || (wb.ReadyState != WebBrowserReadyState.Complete))
 			{
-				if (wb.DocumentText != "" && !wb.DocumentText.Contains("href=\"\""))
-					if (args.breakCondition != "" && wb.DocumentText.Contains(args.breakCondition))
-						break;
-				System.Windows.Forms.Application.DoEvents();
-
+				try
+				{
+					if (wb.DocumentText != "" && !wb.DocumentText.Contains("href=\"\""))
+						if (args.breakCondition != "" && wb.DocumentText.Contains(args.breakCondition))
+							break;
+					System.Windows.Forms.Application.DoEvents();
+				}
+				catch (Exception e) {
+					System.Windows.MessageBox.Show(e.Message);
+				}
 			}
 
 
@@ -130,8 +135,7 @@ namespace ScFix.Utility.WebUtility
 
 
 		}
-
-
+		
 
 		private static void Wb_FileDownload(object sender, EventArgs e)
 		{

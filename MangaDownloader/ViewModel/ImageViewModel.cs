@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MangaScraper.ViewModel
+namespace WebScraper.ViewModel
 {
     public class ImageViewModel : ViewModelBase
     {

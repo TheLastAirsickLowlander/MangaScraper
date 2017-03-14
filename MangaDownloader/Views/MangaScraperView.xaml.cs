@@ -15,14 +15,14 @@ using System.Windows.Shapes;
 
 namespace WebScraper.Views
 {
-    /// <summary>
-    /// Interaction logic for ChapterLink.xaml
-    /// </summary>
-    public partial class ChapterLink : UserControl
-    {
-        public ChapterLink()
-        {
-            InitializeComponent();
-        }
-    }
+	/// <summary>
+	/// Interaction logic for MainWindow.xaml
+	/// </summary>
+	public partial class MangaScraperView : UserControl
+	{
+		public MangaScraperView()
+		{
+			InitializeComponent();
+		}
+	}
 }

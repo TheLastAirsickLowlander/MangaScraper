@@ -1,4 +1,4 @@
-﻿using MangaScraper.Utilties;
+﻿using WebScraper.Utilties;
 using ScFix.Utility.Classes;
 using ScFix.Utility.ViewModels;
 using ScFix.Utility.WebUtility;
@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
-namespace MangaScraper.ViewModel
+namespace WebScraper.ViewModel
 {
 
     public enum ChapterProcessingStatus
@@ -109,7 +109,6 @@ namespace MangaScraper.ViewModel
 
         #region Members
         BackgroundWorker _bgWorker = null;
-        bool parrallelFinished = false;
         #endregion
 
         #region Methods

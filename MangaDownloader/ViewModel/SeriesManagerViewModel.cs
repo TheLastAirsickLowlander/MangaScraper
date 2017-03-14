@@ -1,4 +1,4 @@
-﻿using MangaScraper.Models;
+﻿using WebScraper.Models;
 using ScFix.Utility.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MangaScraper.ViewModel
+namespace WebScraper.ViewModel
 {
     public class SeriesManagerViewModel : ViewModelBase
     {

@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\DEVEL\Public Repositories\MangaScraper\MangaDownloader\obj\Debug\
+W:\Public Repositories\MangaScraper\MangaDownloader\obj\Debug\
 KissAnimeDownloader
 none
 false
 DEBUG;TRACE
-D:\DEVEL\Public Repositories\MangaScraper\MangaDownloader\App.xaml
-2804141283
+W:\Public Repositories\MangaScraper\MangaDownloader\App.xaml
+22084789983
 
-18-1137387357
-15-1417457861
-MainWindow.xaml;Views\ChapterLink.xaml;
+2065311961
+15-219375563
+Views\MangaScraperView.xaml;Views\ChapterLink.xaml;
 
-True
+False
 

@@ -10,19 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace WebScraper.Views
 {
-    /// <summary>
-    /// Interaction logic for ChapterLink.xaml
-    /// </summary>
-    public partial class ChapterLink : UserControl
-    {
-        public ChapterLink()
-        {
-            InitializeComponent();
-        }
-    }
+	/// <summary>
+	/// Interaction logic for MainView.xaml
+	/// </summary>
+	public partial class MainView : Window
+	{
+		public MainView()
+		{
+			InitializeComponent();
+		}
+	}
 }

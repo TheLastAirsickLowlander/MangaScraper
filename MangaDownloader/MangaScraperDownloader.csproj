@@ -7,8 +7,8 @@
     <ProjectGuid>{B5375EFB-9CAC-4EC7-9432-D76DB0BE1CF9}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>KissAnimeDownloader</RootNamespace>
-    <AssemblyName>KissAnimeDownloader</AssemblyName>
+    <RootNamespace>WebScraper</RootNamespace>
+    <AssemblyName>WebScraper</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -57,18 +57,32 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Contracts\ITab.cs" />
     <Compile Include="Converter\ObjectToVisibility.cs" />
     <Compile Include="Converter\EnumConverter.cs" />
     <Compile Include="Models\SeriesModel.cs" />
     <Compile Include="Utilties\HtmlParseing.cs" />
+    <Compile Include="ViewModel\AnimeScraperViewModel.cs" />
     <Compile Include="ViewModel\ChapterViewModel.cs" />
     <Compile Include="ViewModel\ImageViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\MangaScraperViewModel.cs" />
     <Compile Include="ViewModel\SeriesManagerViewModel.cs" />
+    <Compile Include="Views\AnimeScraperView.xaml.cs">
+      <DependentUpon>AnimeScraperView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ChapterLink.xaml.cs">
       <DependentUpon>ChapterLink.xaml</DependentUpon>
     </Compile>
-    <Page Include="MainWindow.xaml">
+    <Page Include="Views\AnimeScraperView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MangaScraperView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -76,8 +90,11 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
+    <Compile Include="Views\MainView.xaml.cs">
+      <DependentUpon>MainView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MangaScraperView.xaml.cs">
+      <DependentUpon>MangaScraperView.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\ChapterLink.xaml">

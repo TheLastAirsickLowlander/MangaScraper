@@ -1,0 +1,29 @@
+﻿<Window x:Class="WebScraper.Views.MainView"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:v="clr-namespace:WebScraper.Views"
+		xmlns:vm="clr-namespace:WebScraper.ViewModel"
+		mc:Ignorable="d"
+		Title="WebScraper"
+		d:DataContext="{d:DesignData vm:MainViewModel}">
+	<Window.Resources>
+		<DataTemplate DataType="{x:Type vm:MangaScraperViewModel}">
+			<v:MangaScraperView />
+		</DataTemplate>
+		<DataTemplate DataType="{x:Type vm:AnimeScraperViewModel}">
+			<v:AnimeScraperView />
+		</DataTemplate>
+	</Window.Resources>
+	<Grid>
+		<TabControl ItemsSource="{Binding Tabs}"
+					SelectedItem="{Binding SelectedTab}">
+			<TabControl.ItemTemplate>
+				<DataTemplate>
+					<Label Content="{Binding Header}" />
+				</DataTemplate>
+			</TabControl.ItemTemplate>
+		</TabControl>
+	</Grid>
+</Window>
