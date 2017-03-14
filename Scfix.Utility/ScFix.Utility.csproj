@@ -73,6 +73,9 @@
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Images\BitmapConversions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WebUtility\CookieAwareWebClient.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="WebUtility\WebImporting.cs" />
   </ItemGroup>
   <ItemGroup />
