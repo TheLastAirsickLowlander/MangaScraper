@@ -60,6 +60,7 @@
     <Compile Include="Contracts\ITab.cs" />
     <Compile Include="Converter\ObjectToVisibility.cs" />
     <Compile Include="Converter\EnumConverter.cs" />
+    <Compile Include="EventArgs\NavigationArgs.cs" />
     <Compile Include="Models\SeriesModel.cs" />
     <Compile Include="Utilties\HtmlParseing.cs" />
     <Compile Include="ViewModel\AnimeScraperViewModel.cs" />

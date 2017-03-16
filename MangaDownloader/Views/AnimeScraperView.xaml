@@ -1,12 +1,34 @@
 ﻿<UserControl x:Class="WebScraper.Views.AnimeScraperView"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:WebScraper.Views"
-             mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-		<Label>Anime Scraper View!!</Label> 
-    </Grid>
+			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:local="clr-namespace:WebScraper.Views"
+			 xmlns:vm="clr-namespace:WebScraper.ViewModel"
+			 DataContextChanged="UserControl_DataContextChanged"
+			 mc:Ignorable="d"
+			 d:DesignHeight="300"
+			 d:DesignWidth="300"
+			 d:DataContext="{d:DesignInstance vm:AnimeScraperViewModel}">
+	<TabControl TabStripPlacement="Bottom">
+		<TabItem Header="Browser">
+			<WebBrowser x:Name="wb" LoadCompleted="wb_LoadCompleted" />
+		</TabItem>
+		<TabItem Header="Automation">
+			<Grid>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto" />
+					<RowDefinition Height="*" />
+				</Grid.RowDefinitions>
+				<StackPanel Orientation="Horizontal">
+					<Label>Anime Scraper View!!</Label>
+					<Button Command="{Binding Login}">LOGIN!!!</Button>
+				</StackPanel>
+				<ScrollViewer Grid.Row="1">
+					<TextBox TextWrapping="Wrap"
+							 Text="{Binding Log}" />
+				</ScrollViewer>
+			</Grid>
+		</TabItem>
+	</TabControl>
 </UserControl>

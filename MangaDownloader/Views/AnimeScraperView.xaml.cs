@@ -12,6 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WebScraper.ViewModel;
+using ScFix.Utility.WebUtility;
+using System.Reflection;
 
 namespace WebScraper.Views
 {
@@ -20,9 +23,61 @@ namespace WebScraper.Views
 	/// </summary>
 	public partial class AnimeScraperView : UserControl
 	{
+		private enum PageState {
+			LoginPage,
+			AnimeIndex,
+			AnimeVideo
+		}
+		static private string GetVideoLinks = @"function myfunc(){ var element = document.querySelectorAll('td > a'); var items = []; for(i =0; i < element.length; i++){items.push(element[i].href);}return items.toString();} myfunc();";
+
+
+		public ICommand ParsePage
+		{
+			get { return (ICommand)GetValue(ParsePageProperty); }
+			set { SetValue(ParsePageProperty, value); }
+		}
+
+		// Using a DependencyProperty as the backing store for ParsePage.  This enables animation, styling, binding, etc...
+		public static readonly DependencyProperty ParsePageProperty =
+			DependencyProperty.Register("ParsePage", typeof(ICommand), typeof(AnimeScraperView));
+
 		public AnimeScraperView()
 		{
 			InitializeComponent();
+			wb.Navigate("http://kissanime.ru/Login");
+			dynamic activeX = this.wb.GetType().InvokeMember("ActiveXInstance",
+					BindingFlags.GetProperty | BindingFlags.Instance | BindingFlags.NonPublic,
+					null, this.wb, new object[] { });
+
+			activeX.Silent = true;
+
+
+		}
+
+		private void Vm_NavigateToPage(object sender, EventArgs.NavigationArgs e)
+		{
+			wb.Navigate(e.URL);
+		}
+
+		private void wb_LoadCompleted(object sender, NavigationEventArgs e)
+		{
+			if (ParsePage != null)
+			{
+				var s = HtmlDocumentHelper.GetHTML(wb);
+				var obj = HtmlDocumentHelper.InvokeScript(wb, GetVideoLinks);
+				ParsePage.Execute(obj);
+			}
+			
+		}
+
+		private void UserControl_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+		{
+			var vm = DataContext as AnimeScraperViewModel;
+
+			if (vm != null)
+			{
+				vm.NavigateToPage += Vm_NavigateToPage;
+			}
 		}
 	}
 }

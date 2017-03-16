@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.mshtml, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
@@ -76,6 +79,7 @@
     <Compile Include="WebUtility\CookieAwareWebClient.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="WebUtility\HtmlDocumentHelper.cs" />
     <Compile Include="WebUtility\WebImporting.cs" />
   </ItemGroup>
   <ItemGroup />
