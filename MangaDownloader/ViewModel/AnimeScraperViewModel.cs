@@ -3,6 +3,7 @@ using ScFix.Utility.ViewModels;
 using ScFix.Utility.WebUtility;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.IO;
 using System.Linq;
@@ -17,6 +18,28 @@ namespace WebScraper.ViewModel
 {
 	public class AnimeScraperViewModel : ViewModelBase, ITab
 	{
+
+		private ObservableCollection<AnimeSeriesViewModel> _Series = new ObservableCollection<AnimeSeriesViewModel>();
+
+		public ObservableCollection<AnimeSeriesViewModel> Series
+		{
+			get { return _Series; }
+			set { _Series = value; }
+		}
+
+
+
+		public AnimeScraperViewModel()
+		{
+			var series = new AnimeSeriesViewModel("series name", @"http://kissanime.ru/Anime/Tales-of-Zestiria-the-X");
+			series.LoadSeries += Series_LoadSeries;
+		   _Series.Add(series);
+		}
+
+		private void Series_LoadSeries(object sender, string link)
+		{
+			NavigateToPage?.Invoke(this, new NavigationArgs() { URL = link });
+		}
 
 		public event EventHandler<NavigationArgs> NavigateToPage;
 
@@ -37,20 +60,29 @@ namespace WebScraper.ViewModel
 		}
 
 
-		private RelayCommand<string> _ParsePage = new RelayCommand<string>(ParseHTML);
-		private static void ParseHTML(string concatedLinkes)
+		private RelayCommand<string> _ParsePage;
+		private void ParseHTML(string concatedLinkes)
 		{
 			if (concatedLinkes.Length > 0)
 			{
 				//store href
 				var items = concatedLinkes.Split(',');
-				
+				var animeLinks = items.Reverse().ToList();
+				// look up the name of the anime should already be done by this point but what the hell
+				var series= Series.First();
+				series.SetEpisodes(animeLinks);
 			}
 		}
-
 		public RelayCommand<string> ParsePage
 		{
-			get => _ParsePage;
+			get
+			{
+				if (_ParsePage == null)
+				{
+					_ParsePage = new RelayCommand<string>(ParseHTML);
+				}
+				return _ParsePage;
+			}
 		}
 
 
@@ -63,7 +95,7 @@ namespace WebScraper.ViewModel
 
 		private void ExecuteLogin(object obj)
 		{
-			NavigateToPage?.Invoke(this, new NavigationArgs() { URL = "http://kissanime.ru/Anime/Tales-of-Zestiria-the-X-Cross" });
+			NavigateToPage?.Invoke(this, new NavigationArgs() { URL = "http://kissanime.ru/" });
 		}
 	}
 }

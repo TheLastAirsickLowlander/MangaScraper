@@ -64,6 +64,8 @@
     <Compile Include="Models\SeriesModel.cs" />
     <Compile Include="Utilties\HtmlParseing.cs" />
     <Compile Include="ViewModel\AnimeScraperViewModel.cs" />
+    <Compile Include="ViewModel\AnimeSeriesViewModel.cs" />
+    <Compile Include="ViewModel\AnimeLinksViewModel.cs" />
     <Compile Include="ViewModel\ChapterViewModel.cs" />
     <Compile Include="ViewModel\ImageViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />

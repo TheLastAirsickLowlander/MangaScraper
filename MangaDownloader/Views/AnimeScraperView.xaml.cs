@@ -15,6 +15,8 @@ using System.Windows.Shapes;
 using WebScraper.ViewModel;
 using ScFix.Utility.WebUtility;
 using System.Reflection;
+using System.Threading;
+using System.Windows.Threading;
 
 namespace WebScraper.Views
 {
@@ -30,6 +32,7 @@ namespace WebScraper.Views
 		}
 		static private string GetVideoLinks = @"function myfunc(){ var element = document.querySelectorAll('td > a'); var items = []; for(i =0; i < element.length; i++){items.push(element[i].href);}return items.toString();} myfunc();";
 
+		private Dispatcher dispatcher = null;
 
 		public ICommand ParsePage
 		{
@@ -44,14 +47,14 @@ namespace WebScraper.Views
 		public AnimeScraperView()
 		{
 			InitializeComponent();
-			wb.Navigate("http://kissanime.ru/Login");
+			wb.Navigate("http://google.com");
 			dynamic activeX = this.wb.GetType().InvokeMember("ActiveXInstance",
 					BindingFlags.GetProperty | BindingFlags.Instance | BindingFlags.NonPublic,
 					null, this.wb, new object[] { });
 
 			activeX.Silent = true;
 
-
+			this.dispatcher = Dispatcher;
 		}
 
 		private void Vm_NavigateToPage(object sender, EventArgs.NavigationArgs e)
@@ -61,12 +64,12 @@ namespace WebScraper.Views
 
 		private void wb_LoadCompleted(object sender, NavigationEventArgs e)
 		{
-			if (ParsePage != null)
-			{
-				var s = HtmlDocumentHelper.GetHTML(wb);
-				var obj = HtmlDocumentHelper.InvokeScript(wb, GetVideoLinks);
-				ParsePage.Execute(obj);
-			}
+			//if (ParsePage != null)
+			//{
+			//	var s = HtmlDocumentHelper.GetHTML(wb);
+			//	var obj = HtmlDocumentHelper.InvokeScript(wb, GetVideoLinks);
+			//	ParsePage.Execute(obj);
+			//}
 			
 		}
 
@@ -77,6 +80,24 @@ namespace WebScraper.Views
 			if (vm != null)
 			{
 				vm.NavigateToPage += Vm_NavigateToPage;
+			}
+		}
+
+		private void wb_Navigated(object sender, NavigationEventArgs e)
+		{
+			if (ParsePage != null)
+			{
+				Task.Run(() =>
+				{
+					Thread.Sleep(500);
+					dispatcher.Invoke(() => {
+						var s = HtmlDocumentHelper.GetHTML(wb);
+						var obj = HtmlDocumentHelper.InvokeScript(wb, GetVideoLinks);
+						ParsePage.Execute(obj);
+						HtmlDocumentHelper.InvokeScript(wb, "document.execCommand('Stop');");
+					});
+
+				});
 			}
 		}
 	}

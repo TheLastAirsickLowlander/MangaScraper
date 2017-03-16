@@ -10,25 +10,39 @@
 			 d:DesignHeight="300"
 			 d:DesignWidth="300"
 			 d:DataContext="{d:DesignInstance vm:AnimeScraperViewModel}">
-	<TabControl TabStripPlacement="Bottom">
-		<TabItem Header="Browser">
-			<WebBrowser x:Name="wb" LoadCompleted="wb_LoadCompleted" />
-		</TabItem>
-		<TabItem Header="Automation">
-			<Grid>
-				<Grid.RowDefinitions>
-					<RowDefinition Height="Auto" />
-					<RowDefinition Height="*" />
-				</Grid.RowDefinitions>
-				<StackPanel Orientation="Horizontal">
-					<Label>Anime Scraper View!!</Label>
-					<Button Command="{Binding Login}">LOGIN!!!</Button>
-				</StackPanel>
-				<ScrollViewer Grid.Row="1">
-					<TextBox TextWrapping="Wrap"
-							 Text="{Binding Log}" />
-				</ScrollViewer>
-			</Grid>
-		</TabItem>
-	</TabControl>
+	<UserControl.Resources>
+		<HierarchicalDataTemplate DataType="{x:Type vm:AnimeSeriesViewModel}" ItemsSource="{Binding Episodes}">
+			<StackPanel Orientation="Horizontal">
+				<Label Content="{Binding Link}" />
+				<Button Command="{Binding Load}">Load Series</Button>
+			</StackPanel>
+		</HierarchicalDataTemplate>
+		<HierarchicalDataTemplate DataType="{x:Type vm:AnimeLinksViewModel}">
+			<Label Content="{Binding Link}" />
+		</HierarchicalDataTemplate>
+	</UserControl.Resources>
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition />
+			<ColumnDefinition />
+		</Grid.ColumnDefinitions>
+		<Grid Grid.Column="0">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto" />
+				<RowDefinition Height="*" />
+			</Grid.RowDefinitions>
+			<StackPanel Orientation="Horizontal">
+				<Label>Anime Scraper View!!</Label>
+				<Button Command="{Binding Login}">LOGIN!!!</Button>
+			</StackPanel>
+			<TreeView Grid.Row="1" ItemsSource="{Binding Series}">
+				
+			</TreeView>
+		</Grid>
+		<WebBrowser Grid.Column="1"
+					x:Name="wb"
+					Navigated="wb_Navigated"
+					LoadCompleted="wb_LoadCompleted" />
+
+	</Grid>
 </UserControl>
