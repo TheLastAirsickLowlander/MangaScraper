@@ -18,7 +18,10 @@
 			</StackPanel>
 		</HierarchicalDataTemplate>
 		<HierarchicalDataTemplate DataType="{x:Type vm:AnimeLinksViewModel}">
-			<Label Content="{Binding Link}" />
+			<StackPanel Orientation="Horizontal">
+				<Label Content="{Binding Link}" />
+				<Button Command="{Binding Download}">DownloadPage</Button>
+			</StackPanel>
 		</HierarchicalDataTemplate>
 	</UserControl.Resources>
 	<Grid>

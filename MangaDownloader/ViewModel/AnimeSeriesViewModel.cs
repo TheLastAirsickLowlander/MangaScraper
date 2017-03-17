@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WebScraper.EventArgs;
 
 namespace WebScraper.ViewModel
 {
@@ -26,14 +27,15 @@ namespace WebScraper.ViewModel
 				if (_Load == null)
 					_Load = new RelayCommand((obj) =>
 					{
-						LoadSeries?.Invoke(this, Link);
+						LoadPage?.Invoke(this, new NavigationArgs() { Detail = Link, PageState = Enum.PageType.AnimeIndex });
 					});
 				return _Load;
 			}
 		}
 
-		public event EventHandler<string> LoadSeries;
-
+		#region Events
+		public event EventHandler<NavigationArgs> LoadPage;
+		#endregion
 
 		#region Constructor
 		public AnimeSeriesViewModel(string seriesName, string link)
@@ -46,11 +48,19 @@ namespace WebScraper.ViewModel
 
 		public void SetEpisodes(List<string> AnimeLinks)
 		{
-			AnimeLinks.ForEach((link) => { Episodes.Add(new AnimeLinksViewModel() { Link = link }); });
+			AnimeLinks.ForEach((link) =>
+			{
+				var vm = new AnimeLinksViewModel() { Link = link };
+				vm.RequestDownload += RequestDownload;
+				Episodes.Add(vm);
+			});
 
 		}
 
-
-
+		private void RequestDownload(object sender, NavigationArgs e)
+		{
+			// bubble the event to the top most viewmodel
+			LoadPage.Invoke(sender, e);
+		}
 	}
 }

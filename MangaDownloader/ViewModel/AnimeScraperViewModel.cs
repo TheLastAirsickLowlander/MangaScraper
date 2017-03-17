@@ -12,39 +12,53 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using WebScraper.Contracts;
+using WebScraper.Enum;
 using WebScraper.EventArgs;
 
 namespace WebScraper.ViewModel
 {
 	public class AnimeScraperViewModel : ViewModelBase, ITab
 	{
+		#region Properties
+		public string Header { get => "Anime Scraper"; }
 
+		public string _Log;
+		public string Log
+		{
+			get { return _Log; }
+			set { _Log = value; }
+		}
 		private ObservableCollection<AnimeSeriesViewModel> _Series = new ObservableCollection<AnimeSeriesViewModel>();
-
 		public ObservableCollection<AnimeSeriesViewModel> Series
 		{
 			get { return _Series; }
 			set { _Series = value; }
 		}
+		#endregion
 
+		#region Events
+		public event EventHandler<NavigationArgs> NavigateToPage;
+		#endregion //events
 
-
+		#region Constructor
 		public AnimeScraperViewModel()
 		{
 			var series = new AnimeSeriesViewModel("series name", @"http://kissanime.ru/Anime/Tales-of-Zestiria-the-X");
-			series.LoadSeries += Series_LoadSeries;
-		   _Series.Add(series);
+			series.LoadPage += Series_LoadPage;
+			_Series.Add(series);
+
 		}
 
-		private void Series_LoadSeries(object sender, string link)
+		private void Series_LoadPage(object sender, NavigationArgs e)
 		{
-			NavigateToPage?.Invoke(this, new NavigationArgs() { URL = link });
+			// bubble to the view
+			NavigateToPage?.Invoke(this, e);
 		}
+		#endregion //Constructor
 
-		public event EventHandler<NavigationArgs> NavigateToPage;
 
-		public string Header { get => "Anime Scraper"; }
 
+		#region Login
 		private RelayCommand _Login;
 		public RelayCommand Login
 		{
@@ -58,44 +72,50 @@ namespace WebScraper.ViewModel
 
 			}
 		}
-
-
-		private RelayCommand<string> _ParsePage;
-		private void ParseHTML(string concatedLinkes)
+		private void ExecuteLogin(object obj)
 		{
-			if (concatedLinkes.Length > 0)
+			NavigateToPage?.Invoke(this, new NavigationArgs() { Detail = "http://kissanime.ru/", PageState = PageType.LoginPage });
+		}
+		#endregion //Login
+
+		#region Parse page
+		private RelayCommand<NavigationArgs> _ParsePage;
+		private void ParseHTML(NavigationArgs navArgs)
+		{
+			if (navArgs.PageState == PageType.AnimeIndex)
 			{
-				//store href
-				var items = concatedLinkes.Split(',');
-				var animeLinks = items.Reverse().ToList();
-				// look up the name of the anime should already be done by this point but what the hell
-				var series= Series.First();
-				series.SetEpisodes(animeLinks);
+				var concatedLinks = navArgs.Detail;
+				if (concatedLinks.Length > 0)
+				{
+					//store href
+					var items = concatedLinks.Split(',');
+					var animeLinks = items.Reverse().ToList();
+					// look up the name of the anime should already be done by this point but what the hell
+					var series = Series.First();
+					series.SetEpisodes(animeLinks);
+				}
+			}
+			if (navArgs.PageState == PageType.AnimeVideo)
+			{
+
 			}
 		}
-		public RelayCommand<string> ParsePage
+		public RelayCommand<NavigationArgs> ParsePage
 		{
 			get
 			{
 				if (_ParsePage == null)
 				{
-					_ParsePage = new RelayCommand<string>(ParseHTML);
+					_ParsePage = new RelayCommand<NavigationArgs>(ParseHTML);
 				}
 				return _ParsePage;
 			}
 		}
+		#endregion // Parse Page
 
 
-		public string _Log;
-		public string Log
-		{
-			get { return _Log; }
-			set { _Log = value; }
-		}
 
-		private void ExecuteLogin(object obj)
-		{
-			NavigateToPage?.Invoke(this, new NavigationArgs() { URL = "http://kissanime.ru/" });
-		}
+
+
 	}
 }

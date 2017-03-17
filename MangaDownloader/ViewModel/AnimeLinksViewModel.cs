@@ -5,17 +5,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WebScraper.EventArgs;
 
 namespace WebScraper.ViewModel
 {
 	public class AnimeLinksViewModel : ViewModelBase
 	{
 		public String Link { get; set; }
-		public event EventHandler<string> RequestDownload;
+		public event EventHandler<NavigationArgs> RequestDownload;
 
 		private void request(object obj)
 		{
-			RequestDownload?.Invoke(this, Link);
+			RequestDownload?.Invoke(this, new NavigationArgs() { Detail= Link, PageState = Enum.PageType.AnimeVideo});
 		}
 
 		private RelayCommand _Download;

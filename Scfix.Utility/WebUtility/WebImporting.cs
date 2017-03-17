@@ -139,7 +139,6 @@ namespace ScFix.Utility.WebUtility
 
 		private static void Wb_FileDownload(object sender, EventArgs e)
 		{
-			Debug.WriteLine("whate aer you doing");
 		}
 
 		private static void Bg_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
